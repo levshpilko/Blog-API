@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const multer = require('multer');
 const { v4: uuidv4 } = require('uuid');
 
+require('dotenv').config();
+
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 
@@ -57,7 +59,7 @@ app.use((error, req, res, next) => {
 
 mongoose
 	.connect(
-		'mongodb+srv://Lev:hwNyb5dTGJzU48Ma@cluster0.gat3a.mongodb.net/blog?retryWrites=true&w=majority',
+		`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.gat3a.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
